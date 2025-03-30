@@ -10,3 +10,4 @@
 # Requirement 
 - This is the command to execute the Python script market_strategy.py located in the current directory that reads this file market.gml.
 - Here, market.gml will be used for the analysis and the format is Graph Modeling Language (.gml) which describes the graph's structure with attributes.
+- This program should read the attributes of the nodes and edges in a file. 
