@@ -17,4 +17,5 @@ python ./market_strategy.py market.gml --plot --interactive
 
 # Description of Parameters
 - The script market_strategy.py must be located in the current directory
-- Next, we need to ensure a robust file handles mechanisms such as error checking, file existence validation, and appropriation error messages. 
+- Next, we need to ensure a robust file handles mechanisms such as error checking, file existence validation, and appropriation error messages.
+- 
