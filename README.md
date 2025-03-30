@@ -11,3 +11,9 @@
 - This is the command to execute the Python script market_strategy.py located in the current directory that reads this file market.gml.
 - Here, market.gml will be used for the analysis and the format is Graph Modeling Language (.gml) which describes the graph's structure with attributes.
 - This program should read the attributes of the nodes and edges in a file. 
+python ./market_strategy.py market.gml --plot --interactive
+
+- market.gml encodes a bipartite graph of 2n nodes with two sets A=(0, 1, .. n-1) and B=(n-1, n, .. 2n-1) where the nodes of set A have a price and the valuations of set B are set as attributes of the edges 
+
+# Description of Parameters
+- 
