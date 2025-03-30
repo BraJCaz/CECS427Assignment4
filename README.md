@@ -16,4 +16,5 @@ python ./market_strategy.py market.gml --plot --interactive
 - market.gml encodes a bipartite graph of 2n nodes with two sets A=(0, 1, .. n-1) and B=(n-1, n, .. 2n-1) where the nodes of set A have a price and the valuations of set B are set as attributes of the edges 
 
 # Description of Parameters
-- 
+- The script market_strategy.py must be located in the current directory
+- Next, we need to ensure a robust file handles mechanisms such as error checking, file existence validation, and appropriation error messages. 
