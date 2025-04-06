@@ -18,4 +18,7 @@ python ./market_strategy.py market.gml --plot --interactive
 # Description of Parameters
 - The script market_strategy.py must be located in the current directory
 - Next, we need to ensure a robust file handles mechanisms such as error checking, file existence validation, and appropriation error messages.
-- 
+-- plot
+- This requests that the graph should be plotted. This parameter triggers our graph which includes, nodes, plots, edges and possiblty additional metrics or shortest paths.
+-- interactive
+- This requests that our program demonstrates a round of every graph which is also our output. A round is known as the seller graph, computed constricted sets matching and updating our evaluation based on our results. 
