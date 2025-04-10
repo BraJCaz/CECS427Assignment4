@@ -2,6 +2,7 @@
 # Brandon Cazares
 # Professor Ponce 
 # CECS 427 Sec 1 
+# Due Date: 4/15/2025 
 
 # Objective
 - In this assignment, we're going to develop practical proficiency in Python programming, meaning on the manipulation of bipartite graphs.
@@ -21,4 +22,11 @@
 -- plot
 - This requests that the graph should be plotted. This parameter triggers our graph which includes, nodes, plots, edges and possiblty additional metrics or shortest paths.
 -- interactive
-- This requests that our program demonstrates a round of every graph which is also our output. A round is known as the seller graph, computed constricted sets matching and updating our evaluation based on our results. 
+- This requests that our program demonstrates a round of every graph which is also our output. A round is known as the seller graph, computed constricted sets matching and updating our evaluation based on our results.
+
+# Results 
+- When I ran this given command for the assignment, it gave me 3 of both buyers and sellers for my loaded market graph before my first round and my valuations. 
+- For round 1, it gave me a matching set and 4 constricted sets.
+- For round 2, it gave me the same exact thing as round 1.
+- For round 3, it gave me 5 matching sets and our constricted sellers are a final set.
+- Finally, I calculated my market-clearing equilibrium graph. 
