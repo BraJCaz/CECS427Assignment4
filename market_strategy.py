@@ -6,7 +6,6 @@
 import argparse
 import networkx as nx
 import matplotlib.pyplot as plt
-import sys
 import os
 # First, we load our graph as a GML file
 def load_bipartite_graph(file_path):
@@ -41,8 +40,6 @@ def is_bipartite_market(Graph):
         if (u in buyers and v in buyers) or (u in sellers and v in sellers):
             return False  # Invalid bipartite structure (buyer-buyer or seller-seller edge)
     return True
-file_path = "market.gml"
-market_graph = load_bipartite_graph(file_path)
 # we extract our market data
 def extract_market_data(Graph):
     """Extracts buyers, sellers, and valuations from a bipartite graph"""
@@ -68,7 +65,7 @@ def plot_bipartite_graph(Graph, ax=None):
     buyers = [n for n, d in Graph.nodes(data=True) if d.get("type") == "buyer"]
     sellers = [n for n, d in Graph.nodes(data=True) if d.get("type") == "seller"]
 
-    # Then, we generate b
+    # Then, we generate our position
     position = {}  # This adjusts layout for visualization
     position.update((n, (1, i)) for i, n in enumerate(buyers)) # Buyers on one side
     position.update((n, (2, i)) for i, n in enumerate(sellers)) # Sellers on the other
@@ -138,17 +135,17 @@ def construct_preference_seller_graph(Graph):
     return preferred_graph
 # Second, we implement Matching & Constricted Set Detection
 def find_constricted_set(Graph, preferred_graph):
-    """This will help us compute matching and identify constricted sets"""
-    matching = nx.bipartite.maximum_matching(preferred_graph)
+    """Compute matching and identify constricted sets"""
+    buyers = {n for n, d in Graph.nodes(data=True) if d.get("type") == "buyer"}
+    matching = nx.bipartite.maximum_matching(preferred_graph, top_nodes=buyers)
 
-    unmatched_buyers = {b for b in Graph.nodes if Graph.nodes[b].get("type") == "buyer"} - set(matching.keys())
+    unmatched_buyers = buyers - set(matching.keys())
 
-    constricted_sellers = set()
+    constricted_sellers = set({})
     for b in unmatched_buyers:
         constricted_sellers.update(preferred_graph.neighbors(b))
 
     return matching, constricted_sellers
-
 # Third, we implement valuation updates
 def update_valuations(Graph, constricted_sellers):
     """This increases prices for sellers in the constricted set"""
@@ -189,14 +186,9 @@ def market_clearing(Graph, interactive=False, maximum_rounds=20):
 # This is our main function
 def main():
     parser = argparse.ArgumentParser(description="Market Clearing Algorithm on a Bipartite Graph")
-    parser.add_argument("--file", required=True, help="Input GML file representing the market")
+    parser.add_argument("file", nargs="?", default="market.gml", help="Input GML file representing the market (default: market.gml)")
     parser.add_argument("--plot", action="store_true", help="Plot the graph")
     parser.add_argument("--interactive", action="store_true", help="Show each round of computation")
-
-    # Check if the user provided enough arguments
-    if len(sys.argv) == 1:
-        parser.print_help()
-        sys.exit(1)
 
     args = parser.parse_args()
     Graph = load_bipartite_graph(args.file)
@@ -206,7 +198,7 @@ def main():
 
     buyers, sellers, valuations = extract_market_data(Graph)
     # Our loaded market graph is printed with both our buyers and sellers
-    print(f"\n Loaded Market Graph: {len(buyers)} Buyers, {len(sellers)} Sellers")
+    print(f"Loaded Market Graph: {len(buyers)} Buyers, {len(sellers)} Sellers")
     # our valuations are printed
     print("Valuations:", valuations)
 
